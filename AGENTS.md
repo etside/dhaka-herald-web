@@ -97,3 +97,22 @@ their **values** now map to the palette above.
   here (hard rule).
 - Deploy/verify: push to `main` (or a PR) and let `.github/workflows/deploy.yml`
   run `tsc --noEmit` + `vite build`; watch with `gh run watch`.
+
+## Deployment (Netlify — existing setup, do not change)
+
+The connected Netlify site (`dhanaheralds`) is based at the **repo root**, so it
+uses the root `netlify.toml` and the root `package.json`:
+
+- build command: `npm run build` → `vite build` → outputs `dist/`
+- publish directory: `dist`
+- `NODE_VERSION = 22`
+- SPA fallback: `[[redirects]] from "/*" to "/index.html" status = 200`
+
+`vite.config.ts` uses `base: process.env.BASE_PATH || '/'`; Netlify leaves
+`BASE_PATH` unset, so assets resolve from `/`. This already matches the app — do
+**not** create another `netlify.toml` or change the build command / publish
+directory. `dhaka-heralds/netlify.toml` belongs to the stale duplicate at
+`dhaka-heralds/` and is unrelated to the deployed site.
+
+Deploys trigger automatically on push to `main` or a PR; watch the
+`netlify/dhanaheralds/deploy-preview` commit status.
