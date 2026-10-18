@@ -234,6 +234,21 @@ button { font: inherit; cursor: pointer; border: none; background: none; color: 
 }
 .dark .nav-pill__icon::before { background: #2b2b2b; box-shadow: 0 2px 10px rgba(0,0,0,.4); }
 
+/* Header over the dark hero: light tone pills */
+.site-header[data-tone="light"] .nav-pill { color: rgba(255, 255, 255, 0.85); }
+.site-header[data-tone="light"] .nav-pill:hover { color: var(--signal); }
+.site-header[data-tone="light"] .nav-pill .nav-pill__icon svg { color: rgba(255, 255, 255, 0.7); }
+.site-header[data-tone="light"] .nav-pill[aria-current="page"] { color: var(--v1-black); }
+.site-header[data-tone="light"] .nav-pill[aria-current="page"] .nav-pill__icon svg { color: var(--v1-black); }
+.site-header[data-tone="light"] .nav-pill[aria-current="page"] .nav-pill__bg {
+  background: var(--signal);
+  box-shadow: 0 0 0 4px rgba(255, 210, 105, 0.35), 0 2px 8px rgba(0, 0, 0, 0.3);
+}
+.site-header[data-tone="light"] .nav-pill[aria-current="page"] .nav-pill__icon::before {
+  background: rgba(255, 255, 255, 0.55);
+  box-shadow: none;
+}
+
 /* ── Buttons (second-ride capsule + arrow swap) ───────────────────── */
 .btn-capsule {
   display: inline-flex;
