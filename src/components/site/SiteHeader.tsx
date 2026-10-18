@@ -1,16 +1,16 @@
 import { useEffect, useMemo, useRef, useState } from 'react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { useTheme } from '../../lib/theme';
-import { ARTICLES } from '../../data/articles';
+import { ARTICLES, CATEGORIES } from '../../data/articles';
 import {
   Briefcase,
   Close,
   Cpu,
-  Globe,
+  Gauge,
   Landmark,
   Menu,
   Newspaper,
-  Quote,
+  Palette,
   Search,
 } from './icons';
 
@@ -23,21 +23,14 @@ interface NavItem {
 export const NAV_ITEMS: NavItem[] = [
   { label: 'Home', to: '/', icon: Newspaper },
   { label: 'Politics', to: '/section/Politics', icon: Landmark },
-  { label: 'World', to: '/section/World', icon: Globe },
-  { label: 'Business', to: '/section/Business', icon: Briefcase },
+  { label: 'Economy', to: '/section/Economy', icon: Gauge },
   { label: 'Tech', to: '/section/Technology', icon: Cpu },
-  { label: 'Opinion', to: '/section/Opinion', icon: Quote },
+  { label: 'Business', to: '/section/Business', icon: Briefcase },
+  { label: 'Culture', to: '/section/Culture', icon: Palette },
 ];
 
-const MORE_ITEMS = [
-  'Economy',
-  'Sports',
-  'Culture',
-  'Environment',
-  'Health',
-  'Education',
-  'Digital',
-];
+const NAV_LABELS = new Set(NAV_ITEMS.map((n) => n.label));
+const MORE_ITEMS = CATEGORIES.filter((c) => c !== 'All' && !NAV_LABELS.has(c));
 
 function Wordmark({ tone }: { tone: 'light' | 'dark' }) {
   const text = tone === 'light' ? 'text-white' : 'text-ink dark:text-white';

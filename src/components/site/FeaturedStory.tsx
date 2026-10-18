@@ -83,7 +83,7 @@ function Chapter({ article, index }: { article: Article; index: number }) {
 
 export default function FeaturedStory() {
   const reduced = useReducedMotion();
-  const trackRef = useRef<HTMLDivElement | null>(null);
+  const trackRef = useRef<HTMLDivElement>(null);
   const [active, setActive] = useState(0);
   const chapterRefs = useRef<(HTMLDivElement | null)[]>([]);
 

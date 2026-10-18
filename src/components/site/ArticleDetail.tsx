@@ -30,7 +30,7 @@ function ReadingProgress({ targetRef }: { targetRef: React.RefObject<HTMLElement
 }
 
 export default function ArticleDetail({ article }: { article: Article }) {
-  const bodyRef = useRef<HTMLDivElement | null>(null);
+  const bodyRef = useRef<HTMLElement>(null);
   const [copied, setCopied] = useState(false);
 
   const related = ARTICLES.filter((a) => a.id !== article.id && a.category === article.category && !a.embedUrl).slice(0, 3);
@@ -48,7 +48,7 @@ export default function ArticleDetail({ article }: { article: Article }) {
   };
 
   return (
-    <article ref={bodyRef as React.RefObject<HTMLElement>} className="bg-background">
+    <article ref={bodyRef} className="bg-background">
       <ReadingProgress targetRef={bodyRef} />
 
       <header className="page-shell pt-28 lg:pt-36">
